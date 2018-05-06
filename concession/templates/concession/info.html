@@ -1,0 +1,77 @@
+{% extends 'concession/admin-base.html' %}
+{% block title %}All Details{% endblock %}
+{% block songs_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid songs-container">
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1>Form Details</h1><hr>
+                    <form class="form-horizontal" role="form" action="{% url 'concession:status' sap %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <table class="table table-striped">
+                        {% if form %}
+                            {% for item in form %}
+                            <tbody>
+                            <tr>
+                                <th><h3>Sap</h3></th>
+                                <td><h4>{{ item.sap }}</h4></td>
+                            </tr>
+                            <tr>
+                                <th><h3>Department</h3></th>
+                                <td><h4>{{ item.dept }}</h4></td>
+                            </tr>
+                            <tr>
+                                <th><h3>Date Of Birth</h3></th>
+                                <td><h4>{{ item.date_of_birth }}</h4></td>
+                            </tr>
+                            <tr>
+                                <th><h3>Gender</h3></th>
+                                <td><h4>{{ item.gender }}</h4></td>
+                            </tr>
+                            <tr>
+                                <th><h3>Year</h3></th>
+                                <td><h4>{{ item.year }}</h4></td>
+                            </tr>
+                            <tr>
+                                <th><h3>Train Class</h3></th>
+                                <td><h4>{{ item.train_class }}</h4></td>
+                            </tr>
+                            <tr>
+                                <th><h3>Date</h3></th>
+                                <td><h4>{{ item.date }}</h4></td>
+                            </tr>
+                            <tr>
+                                <th><h3>Address</h3></th>
+                                <td><h4>{{ item.address }}</h4></td>
+                            </tr>
+                            <tr>
+                                <th><h3>Station</h3></th>
+                                <td><h4>{{ item.station }}</h4></td>
+                            </tr>
+                            <tr>
+                                <th><h3>Status</h3></th>
+                                <td><h4>{{ item.status }}</h4><br>
+                                    <button class="btn" type="submit">CONFIRM</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                            {% endfor %}
+                        {% else %}
+                            <td><br><h4><i>NO FORMS HAVE BEEN SUBMITTED YET</i></h4></td>
+                        {% endif %}
+                    </table>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

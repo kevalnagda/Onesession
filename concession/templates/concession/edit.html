@@ -1,0 +1,65 @@
+{% extends 'concession/admin-base.html' %}
+{% block title %}{{ album }}{% endblock %}
+{% block albums_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid songs-container">
+
+    <div class="row">
+
+        <div class="col-sm-12 col-md-12">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h1>All Forms</h1>
+                    <hr>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table table-striped">
+                        <thead>
+
+                            <tr>
+                            <th><h3>Sap</h3></th>
+                            <th><h3>Department</h3></th>
+                            <th><h3>Year</h3></th>
+                            <th><h3>Station</h3></th>
+                            <th><h3>Date Applied</h3></th>
+                            <th><h3>Status</h3></th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                        {% if form %}
+                            {% for item in form %}
+                            <tr>
+                                <td><a href="{% url 'concession:editinfo' item.sap %}"><h4>{{ item.sap }}</h4></a></td>
+                                <td><h4>{{ item.dept }}</h4></td>
+                                <td><h4>{{ item.year }}</h4></td>
+                                <td><h4>{{ item.station }}</h4></td>
+                                <td><h4>{{ item.date }}</h4></td>
+                                {% if item.status == True %}
+                                <td><h4>Completed</h4></td>
+                                {% else %}
+                                <td><h4>Pending</h4></td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                        <td><br><h4><i>NO FORMS HAVE BEEN SUBMITTED YET</i></h4></td>
+                        {% endif %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
